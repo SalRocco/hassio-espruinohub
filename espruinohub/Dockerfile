@@ -1,4 +1,4 @@
-ARG BUILD_FROM = ghcr.io/hassio-addons/base-python/aarch64:f0b753d
+ARG BUILD_FROM=ghcr.io/hassio-addons/base-python/aarch64:f0b753d
 FROM ${BUILD_FROM}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
