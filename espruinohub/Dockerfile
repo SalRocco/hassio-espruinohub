@@ -10,12 +10,12 @@ USER root
 ARG BUILD_ARCH
 RUN apk update
 RUN apk add --no-cache nodejs npm 
-RUN apk add --no-cache --virtual .build-dependencies build-base bluez eudev-dev git
+RUN apk add --no-cache --virtual .build-dependencies .gyp python build-base bluez eudev-dev git
 RUN npm set unsafe-perm true
 RUN VERSION="bf353e0763a42dc8e8b3e202249ea2670ea25eaf" \
     && NODE_PATH="/usr/lib/node_modules"
 RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}"
-RUN apk del --no-cache --purge .build-dependencies
+RUN apk del --no-cache --purge .build-dependencies .gyp
 
 # Build arguments
 ARG BUILD_ARCH
