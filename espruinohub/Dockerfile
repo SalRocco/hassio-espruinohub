@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base:7.1.0
+ARG BUILD_FROM=hassioaddons/base:8.0.6
 FROM ${BUILD_FROM}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -23,7 +23,7 @@ RUN \
         git=2.24.2-r0 \
     \
     && npm set unsafe-perm true \
-    && VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" \
+    && VERSION="bf353e0763a42dc8e8b3e202249ea2670ea25eaf" \
     && NODE_PATH="/usr/lib/node_modules" \
     && npm -g i \
         "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" \
