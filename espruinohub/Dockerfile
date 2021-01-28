@@ -8,27 +8,14 @@ ENV LANG C.UTF-8
 USER root
 
 ARG BUILD_ARCH
-
-RUN \
-    apk update \
-    && apk add --no-cache \
-        nodejs=12.15.0-r1 \
-        npm=12.15.0-r1 \
-    && apk add --no-cache --virtual .build-dependencies \
-        python=2.7.16-r3 \
-        build-base=0.5-r1 \
-        bluez=5.52-r1 \
-        linux-headers=4.19.36-r0 \
-        eudev-dev=3.2.9-r1 \
-        git=2.24.2-r0 \
-    \
-    && npm set unsafe-perm true \
-    && VERSION="bf353e0763a42dc8e8b3e202249ea2670ea25eaf" \
-    && NODE_PATH="/usr/lib/node_modules" \
-    && npm -g i \
-        "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" \
-    \
-    && apk del --no-cache --purge .build-dependencies
+RUN apk update
+RUN apk add nodejs npm python bluez git
+RUN npm set unsafe-perm true
+RUN VERSION="bf353e0763a42dc8e8b3e202249ea2670ea25eaf" \
+    && NODE_PATH="/usr/lib/node_modules"
+RUN npm -g i \
+        "git+https://github.com/espruino/EspruinoHub.git#${VERSION}"
+RUN apk del --no-cache --purge .build-dependencies
 
 # Build arguments
 ARG BUILD_ARCH
