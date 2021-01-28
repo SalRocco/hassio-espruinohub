@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM = ghcr.io/hassio-addons/base-python/aarch64:f0b753d
 FROM ${BUILD_FROM}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -13,8 +13,7 @@ RUN apk add --no-cache nodejs npm bluez git
 RUN npm set unsafe-perm true
 RUN VERSION="bf353e0763a42dc8e8b3e202249ea2670ea25eaf" \
     && NODE_PATH="/usr/lib/node_modules"
-RUN npm -g i \
-        "git+https://github.com/espruino/EspruinoHub.git#${VERSION}"
+RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}"
 RUN apk del --no-cache --purge .build-dependencies
 
 # Build arguments
